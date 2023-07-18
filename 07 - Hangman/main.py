@@ -13,11 +13,11 @@ end_of_game = False
 lives = 6
 
 #Populate blanks
-for x in random_word:
+for _ in range(word_length):
     display.append("_")
 
-print(art.logo)
-print(art.stages[lives])
+def get_stats():
+    return f"Turns: {lives}   Word: {''.join(display)}\n"
 
 def populate_display(guess):
     for position in range(word_length):
@@ -26,8 +26,12 @@ def populate_display(guess):
         if letter == guess:
             display[position] = letter
 
+print(art.logo)
+print(art.stages[lives])
+print(get_stats())
+
 while not end_of_game:
-    guess = input("Guess a letter: ").lower()
+    guess = input("Guess a letter: ").lower()[0]
 
     if (guess in display):
         print(f"You've already guessed {guess}, try again.")
@@ -40,10 +44,10 @@ while not end_of_game:
                print("Congratulation you won!")
         else:
             lives -= 1
-            print(f'"{guess}" is not in the word, you lose a turn.')
+            print(f'{guess} is not in the word, you lose a turn.')
             if (lives == 0):
                 end_of_game = True
                 print("You Lost, Better Luck Next Time!")
 
     print(art.stages[lives])
-    print(f"Word: {''.join(display)}                  Turns: {lives}\n")
+    print(get_stats())
