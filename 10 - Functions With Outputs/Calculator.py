@@ -1,4 +1,5 @@
 import art
+import os
 
 #Build your functions
 def add(n1, n2):
@@ -22,6 +23,7 @@ operations = {
 }
 
 def calculator():
+    os.system('cls')
     print(art.logo)
 
     finished = False
