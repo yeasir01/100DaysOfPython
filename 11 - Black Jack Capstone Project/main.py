@@ -35,19 +35,19 @@ def play():
     #function checks scores and returns a message
     def score_message(user, dealer):
         if user == dealer:
-            return "Draw!"
+            return "😐 Draw!"
         elif user > 21:
-            return "Bust, you loose!"
+            return "❌ Bust, you loose!"
         elif dealer == 21:
-            return "Dealer wins!"
+            return "😢 Dealer wins!"
         elif user == 21:
-            return "Blackjack. You win!"
+            return "🃏 Blackjack. You win!"
         elif dealer > 21:
-            return "You win, dealer went over!"
+            return "🏆 You win, dealer went over!"
         elif user > dealer:
-            return "You win!"
+            return "🏆 You win!"
         else:
-            return "You loose"
+            return "😭 You loose"
 
     #loop set the initial 2 cards for user & dealer
     for _ in range(2):
@@ -63,14 +63,15 @@ def play():
         dealers_total = card_total(dealer_cards)
         message = score_message(user_total, dealers_total)
 
-        print(f"Your Cards: {user_cards} = {user_total}\nDealers Card: [{dealer_cards[0]}, ...] = ?")
-
         if user_total > 21:
             game_over = True
             print(f"Your Hand: {user_cards} = {user_total}")
             print(f"Dealers Hand: {dealer_cards} = {dealers_total}")
             print(message)
         else:
+            print(f"Your Hand: {user_cards} = {user_total}")
+            print(f"Dealers Hand: [{dealer_cards[0]}, ...] = ?")
+
             answer = input("\nWould you like to Hit or Stand? H or S? ").lower()
 
             if answer not in ["h", "s"]:
@@ -88,5 +89,5 @@ def play():
     play_again = input("\nReplay? Y or N? ").lower()
     if play_again == "y": play()
     
-#call the play function to start game play
+#call the play function initialize game play
 play()
