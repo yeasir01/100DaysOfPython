@@ -20,7 +20,7 @@ def play():
         total = 0
 
         for card in cards_list:
-            if card == "J" or card == "Q" or card == "K":
+            if card in ["J", "Q", "K"]:
                 total += 10
             elif card == "A":
                 total += 11
@@ -37,17 +37,17 @@ def play():
         if user == dealer:
             return "😐 Draw!"
         elif user > 21:
-            return "❌ Bust, you loose!"
+            return "❌ Bust, You Loose!"
         elif dealer == 21:
-            return "😢 Dealer wins!"
+            return "😢 Dealer Wins!"
         elif user == 21:
-            return "🃏 Blackjack. You win!"
+            return "🏆 Blackjack, You Win!"
         elif dealer > 21:
-            return "🏆 You win, dealer went over!"
+            return "👏 You Win, Dealer Went Over!"
         elif user > dealer:
-            return "🏆 You win!"
+            return "😎 You Win!"
         else:
-            return "😭 You loose"
+            return "😭 You Loose"
 
     #loop set the initial 2 cards for user & dealer
     for _ in range(2):
@@ -59,18 +59,13 @@ def play():
         dealer_cards.append(random_card())
 
     while not game_over:
-        user_total = card_total(user_cards)
-        dealers_total = card_total(dealer_cards)
-        message = score_message(user_total, dealers_total)
+        total = card_total(user_cards)
 
-        if user_total > 21:
+        if total > 21:
             game_over = True
-            print(f"Your Hand: {user_cards} = {user_total}")
-            print(f"Dealers Hand: {dealer_cards} = {dealers_total}")
-            print(message)
         else:
-            print(f"Your Hand: {user_cards} = {user_total}")
-            print(f"Dealers Hand: [{dealer_cards[0]}, ...] = ?")
+            print(f"Your Hand: {user_cards} = {total}")
+            print(f"Dealers Hand: [{dealer_cards[0]}, ?] = ?")
 
             answer = input("\nWould you like to Hit or Stand? H or S? ").lower()
 
@@ -81,13 +76,18 @@ def play():
                 user_cards.append(random_card())
             else:
                 game_over = True
-                print(f"Your Hand: {user_cards} = {user_total}")
-                print(f"Dealers Hand: {dealer_cards} = {dealers_total}")
-                print(message)
         
     #After exiting the while loop ask user if they would like to play again
+    user_total = card_total(user_cards)
+    dealers_total = card_total(dealer_cards)
+    game_message = score_message(user_total, dealers_total)
+
+    print(f"Your Hand: {user_cards} = {user_total}")
+    print(f"Dealers Hand: {dealer_cards} = {dealers_total}")
+    print(game_message)
+    
     play_again = input("\nReplay? Y or N? ").lower()
     if play_again == "y": play()
     
-#call the play function initialize game play
+#instantiate the play function
 play()
