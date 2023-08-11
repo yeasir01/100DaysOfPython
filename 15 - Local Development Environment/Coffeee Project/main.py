@@ -23,7 +23,7 @@ def print_report(res):
 
 def check_resource(drink):
     for ingredient in drink:
-        if drink[ingredient] > resource[ingredient]:
+        if drink[ingredient] >= resource[ingredient]:
             print(f"⚠️  Sorry we are low on {ingredient}. Please try another beverage.")
             return False
     return True
