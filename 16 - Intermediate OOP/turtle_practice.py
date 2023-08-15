@@ -1,12 +1,12 @@
-import turtle
+from turtle import Turtle, Screen
 
-timmy = turtle.Turtle()
+timmy = Turtle()
 timmy.shape("turtle")
 timmy.color("CadetBlue")
 
 timmy.forward(100)
 
-screen = turtle.Screen()
+screen = Screen()
 
 print(screen.canvheight) #Prints value of attribute
 
