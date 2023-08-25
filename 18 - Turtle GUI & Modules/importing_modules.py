@@ -13,7 +13,7 @@
 #from turtle import *
 #forward()
 
-#Method 4 (Alias Module Naming)
+#Method 4 (Alias Module Import)
 #import turtle as t
 #turtle_instance = t.Turtle()
 #turtle_instance.forward(100)
