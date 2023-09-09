@@ -8,7 +8,7 @@ LEFT = 180
 RIGHT = 0
 
 class Snake:
-    def __init__(self, segments:int = 3, delay:float = 0.15, color:str = "lightGreen") -> None:
+    def __init__(self, segments:int = 3, delay:float = 0.15, color:str = "greenYellow") -> None:
         self.segments = segments
         self.game_running = True
         self.delay = delay
@@ -28,7 +28,8 @@ class Snake:
     def __add_segment(self, position):
         new_segment = Turtle(shape="square")
         new_segment.penup()
-        new_segment.color(self.color)
+        new_segment.color("black")
+        new_segment.fillcolor(self.color)
         new_segment.goto(position)
         self.segments_list.append(new_segment)
     
