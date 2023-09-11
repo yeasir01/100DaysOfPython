@@ -9,17 +9,16 @@ RIGHT = 0
 
 class Snake:
     def __init__(self, segments:int = 3, delay:float = 0.15, color:str = "greenYellow") -> None:
-        self.segments = segments
         self.game_running = True
         self.delay = delay
         self.color = color
         self.segments_list = []
-        self.__init_segments()
+        self.__init_snake(segments)
         self.head = self.segments_list[0]
 
-    def __init_segments(self) -> None:
+    def __init_snake(self, segment_count:int) -> None:
         start = 0
-        stop = ((self.segments - 1) * -20) - 1
+        stop = ((segment_count - 1) * -20) - 1
         step = -20
 
         for x_position in range(start, stop, step):
@@ -34,7 +33,8 @@ class Snake:
         self.segments_list.append(new_segment)
     
     def extend(self):
-        self.__add_segment(self.segments_list[-1].position())
+        last_segment_cor = self.segments_list[-1].position()
+        self.__add_segment(last_segment_cor)
 
     def move(self):
         sleep(self.delay)

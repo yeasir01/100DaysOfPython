@@ -10,7 +10,7 @@ screen.bgcolor("black")
 screen.title("Snake Game")
 screen.tracer(0)
 
-snake = Snake(segments=12)
+snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
 
@@ -21,13 +21,13 @@ screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
 while snake.game_running:
-    screen.update()
     snake.move()
+    screen.update()
 
     # detect collision w/food object
-    if snake.head.distance(food) < 15:
+    if snake.head.distance(food) < 18:
         food.new_location()
-        scoreboard.update(score=1)
+        scoreboard.update(1)
         snake.extend()
 
     # detect collision w/wall
